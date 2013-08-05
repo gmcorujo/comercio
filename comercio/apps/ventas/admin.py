@@ -1,4 +1,4 @@
-from django.contrib			import admin
+from django.contrib					import admin
 from comercio.apps.ventas.models	import cliente, producto, proveedor, rubroProducto, marcaProducto, empresa
 
 admin.site.register(cliente)
