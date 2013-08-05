@@ -1,0 +1,97 @@
+body
+{
+	background: #EFEFEF;
+	color: #4C4C4C;
+	font-family: "PT Sans", Arial;
+	font-size: 16px;
+	margin: 0;
+	width: 100%;
+}
+
+footer
+{
+	background: #434343;
+	color: #A7A7A7;
+	padding: 1em 0;
+	text-align: center;
+	width: 100%;
+}
+footer p
+{
+	margin: 0;
+}
+
+header
+{
+	background: #434343;
+	color: white;
+	margin: 0;
+	padding: 0.5em;
+}
+header:after
+{
+	clear: both;
+	content: "";
+	display: block;
+}
+header figure
+{
+	float: left;
+	text-align: bottom;
+}
+header #name_user
+{
+	float: right;
+	top: 0;
+	right: 0;
+	font-size: 1em;
+	margin: 0 0 0 0;
+}
+header h1
+{
+	font-size: 20px;
+	font-weight: normal;
+	display: block;
+	margin: 1em 85px 1em 100px;
+}
+header #avatar
+{
+	position:  absolute;
+	top: 0;
+	right: 0;
+	margin: 1em 1em 0 0;
+	border: 5px
+}
+header #avatar img
+{
+	float: right;
+	width: 40px;
+}
+header #logo img
+{
+	width: 80px;
+}
+
+nav
+{
+	background: #878787;
+	font-size: 0.9em;
+}
+nav ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+nav ul li
+{
+	display: inline-block;
+	margin: 0 1.2em 0 0;
+	vertical-align: top;
+}
+nav ul li a
+{
+	color: white;
+	display: block;
+	padding: 1em 1em;
+}
