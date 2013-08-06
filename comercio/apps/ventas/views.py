@@ -8,14 +8,23 @@ from django.http 					import HttpResponseRedirect
 def add_product_view(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
-			form = addProductForm(request.POST)
+			form = addProductForm(request.POST, request.FILES)
 			info = "Inicializando"
 			if form.is_valid():
-				nombre = form.cleaned_data['nombre']
-				descripcion = form.cleaned_data['descripcion']
+				nombre 			= form.cleaned_data['nombre']
+				descripcion 	= form.cleaned_data['descripcion']
+				imagen			= form.cleaned_data['imagen'] # Esto se obtiene con el request.FILES
+				stock			= form.cleaned_data['stock']
+				precio_costo	= form.cleaned_data['precio_costo']
+				precio_venta	= form.cleaned_data['precio_venta']
 				p = producto()
-				p.nombre = nombre
-				p.descripcion = descripcion
+				if imagen: # Genero una validacion
+					p.imagen = imagen 
+				p.nombre 		= nombre
+				p.descripcion 	= descripcion
+				p.stock			= stock
+				p.precio_costo	= precio_costo
+				p.precio_venta	= precio_venta
 				p.status = True
 				p.save() # Guarda la Informacion
 				info = "Se guardo satisfactoriamente!!"

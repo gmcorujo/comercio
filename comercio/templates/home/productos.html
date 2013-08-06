@@ -7,7 +7,7 @@
 {% endif %}
 {% if productos %}
 	{% for p in productos %}
-		<p>{{ p.nombre }}</p>
+		<p><a href="/producto/{{p.id}}/">{{ p.nombre }}</a></p>
 	{% endfor %}
 {% else %}
 	<h3>No Existen Productos para la Venta</h3>

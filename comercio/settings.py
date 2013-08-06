@@ -1,26 +1,16 @@
 # Django settings for comercio project.
 import os
-
+from local_settings import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Corujo Gustavo Martin', 'v8martincoru@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dbcomercio',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'root',
-        'PASSWORD': '********',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -82,9 +72,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '%9mtiyx8!wqj&j_bz3tty!pl(4r@3@0p_m!ra!h(t@w@%+324@'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

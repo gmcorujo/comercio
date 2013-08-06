@@ -69,7 +69,7 @@ class producto(models.Model):
 	descripcion		= models.TextField(max_length=300)
 	status			= models.BooleanField(default=True)
 	imagen			= models.ImageField(upload_to=url,null=True,blank=True)
-	stock			= models.models.DecimalField(max_digits=6,decimal_places=2)
+	stock			= models.DecimalField(max_digits=6,decimal_places=2)
 	precio_costo	= models.DecimalField(max_digits=6,decimal_places=2)
 	precio_venta	= models.DecimalField(max_digits=6,decimal_places=2)
 	rubro 			= models.ManyToManyField(rubroProducto,null=True,blank=True)

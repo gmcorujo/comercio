@@ -16,8 +16,8 @@
 			<img src="/media/images/logo.png"/>
 		</figure>
 		<h1 id="titulo_heder">Plataforma de Comercio y venta de Productos</h1>		
+		<figure id="name_user"> 
 		{% if user.is_authenticated %}
-			<figure id="name_user"> 
 				<p>Bienvenido: {{ user.username }}</p>
 				<a href="{% url "vista_logout"%}">Logout</a>
 				<figure id="avatar">
@@ -50,7 +50,7 @@
 	</section>	
 	<footer>
 		<p>Powered Plataforma de Comercio y Venta</p>
-		<p>Desarrollado por Corujo Gustavo Martín - &copy; Derechos Reservados</p>
+		<p>Desarrollado por Corujo Gustavo Martín - Siri Ricardo. &copy; Derechos Reservados</p>
 	</footer>
 </body>
 </html>
