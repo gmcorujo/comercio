@@ -11,3 +11,18 @@ class addProductForm(forms.Form):
 
 	def clean(self):
 		return self.cleaned_data
+
+
+class addRubroForm(forms.Form):
+	nombre			= forms.CharField(widget=forms.TextInput())
+	descripcion		= forms.CharField(widget=forms.TextInput())
+
+	def clean(self):
+		return self.cleaned_data
+
+class addMarcaForm(forms.Form):
+	nombre			= forms.CharField(widget=forms.TextInput())
+	descripcion		= forms.CharField(widget=forms.TextInput())
+
+	def clean(self):
+		return self.cleaned_data

@@ -1,8 +1,8 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.forms 	import addProductForm
-from comercio.apps.ventas.models 	import producto
+from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm
+from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto
 from django.http 					import HttpResponseRedirect
 
 def add_product_view(request):
@@ -37,5 +37,56 @@ def add_product_view(request):
 			form = addProductForm()
 			ctx  = {'form':form}
 			return render_to_response('ventas/addProducto.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
+
+
+def add_rubro_view(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			form = addRubroForm(request.POST)
+			info = "Inicializando"
+			if form.is_valid():
+				nombre			= form.cleaned_data['nombre']
+				descripcion		= form.cleaned_data['descripcion']
+				r = rubroProducto()
+				r.nombre		= nombre
+				r.descripcion	= descripcion
+				r.save()
+				info = "El Rubro se Guardo Correctamente"
+			else:
+				info = "Informacion con datos de Rubros Incorrectos"
+			form = addRubroForm()
+			ctx  = {'form':form, 'informacion':info}
+			return render_to_response('ventas/addRubro.html',ctx,context_instance=RequestContext(request))
+		else: #GET
+			form = addRubroForm()
+			ctx  = {'form':form}
+			return render_to_response('ventas/addRubro.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
+
+def add_marca_view(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			form = addMarcaForm(request.POST)
+			info = "Inicializando"
+			if form.is_valid():
+				nombre			= form.cleaned_data['nombre']
+				descripcion		= form.cleaned_data['descripcion']
+				m = marcaProducto()
+				m.nombre 		= nombre
+				m.descripcion	= descripcion
+				m.save()
+				info 	= "La Marca se Guardo Correctamente"
+			else:
+				info = "Informacion con datos de Marca Incorrectos"
+			form = addMarcaForm()
+			ctx  = {'form':form, 'informacion':info}
+			return render_to_response('ventas/addMarca.html',ctx,context_instance=RequestContext(request))
+		else:
+			form = addMarcaForm()
+			ctx  = {'form':form}
+			return render_to_response('ventas/addMarca.html',ctx,context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')
