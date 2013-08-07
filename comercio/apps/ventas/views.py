@@ -1,8 +1,8 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm
-from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto
+from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm, addProveedorForm
+from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto, proveedor
 from django.http 					import HttpResponseRedirect
 
 def add_product_view(request):
@@ -88,5 +88,40 @@ def add_marca_view(request):
 			form = addMarcaForm()
 			ctx  = {'form':form}
 			return render_to_response('ventas/addMarca.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
+
+def add_proveedor_view(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			form = addProveedorForm(request.POST)
+			info = "Inicializando"
+			if form.is_valid():
+				razon_social		= form.cleaned_data['razon_social']
+				nombre_fantasia		= form.cleaned_data['nombre_fantasia']
+				domicilio			= form.cleaned_data['domicilio']
+				numero_cuit			= form.cleaned_data['numero_cuit']
+				provincia			= form.cleaned_data['provincia']
+				localidad			= form.cleaned_data['localidad']
+				telefono			= form.cleaned_data['telefono']
+				prov =proveedor()
+				prov.razon_social	= razon_social
+				prov.nombre_fantasia= nombre_fantasia
+				prov.domicilio		= domicilio
+				prov.numero_cuit	= numero_cuit
+				prov.provincia		= provincia
+				prov.localidad		= localidad
+				prov.telefono		= telefono
+				prov.save()
+				info 				= "El Proveedor se Guardo Correctamente"
+			else:
+				info = "Informacion con datos incorrectos"
+			form = addProveedorForm()
+			ctx  = {'form':form, 'informacion':info}
+			return render_to_response('ventas/addProveedor.html',ctx,context_instance=RequestContext(request))
+		else:
+			form = addProveedorForm()
+			ctx  = {'form':form}
+			return render_to_response('ventas/addProveedor.html',ctx,context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')

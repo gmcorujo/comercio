@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.models 	import producto
+from comercio.apps.ventas.models 	import producto,proveedor
 from comercio.apps.home.forms 		import ContactForm,LoginForm
 
 from django.contrib.auth 			import login,logout,authenticate
@@ -18,6 +18,11 @@ def productos_view(request):
 	prod 	= producto.objects.filter(status=True) #Es igual a --> SELECT *FROM ventas_productos where status = True
 	ctx 	= {'productos': prod}
 	return render_to_response('home/productos.html',ctx,context_instance=RequestContext(request))
+
+def proveedor_view(request):
+	prov = proveedor.objects.filter(status=True)
+	ctx  = {'proveedor':prov}
+	return render_to_response('home/proveedores.html',ctx,context_instance=RequestContext(request))
 
 def singleProducto_view(request,id_prod):
 	prod 	= producto.objects.get(id=id_prod)

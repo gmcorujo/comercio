@@ -26,3 +26,15 @@ class addMarcaForm(forms.Form):
 
 	def clean(self):
 		return self.cleaned_data
+
+class addProveedorForm(forms.Form):
+	razon_social		= forms.CharField(widget=forms.TextInput())
+	nombre_fantasia		= forms.CharField(widget=forms.TextInput())
+	domicilio			= forms.CharField(widget=forms.TextInput())
+	numero_cuit			= forms.CharField(widget=forms.TextInput())
+	provincia			= forms.CharField(widget=forms.TextInput())
+	localidad			= forms.CharField(widget=forms.TextInput())
+	telefono			= forms.CharField(widget=forms.TextInput())
+
+	def clean(self):
+		return self.cleaned_data
