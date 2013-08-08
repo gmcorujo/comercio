@@ -1,8 +1,8 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm, addProveedorForm
-from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto, proveedor
+from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm, addProveedorForm, addEmpresaForm
+from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto, proveedor, empresa
 from django.http 					import HttpResponseRedirect
 
 def add_product_view(request):
@@ -88,6 +88,39 @@ def add_marca_view(request):
 			form = addMarcaForm()
 			ctx  = {'form':form}
 			return render_to_response('ventas/addMarca.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
+
+def add_empresa_view(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			form = addEmpresaForm()
+			info = "Inicializando"
+			if form.is_valid():
+				razon_social		= form.cleaned_data['razon_social']
+				nombre_fantasia		= form.cleaned_data['nombre_fantasia']
+				domicilio			= form.cleaned_data['domicilio']
+				cuit 				= form.cleaned_data['cuit']
+				localidad			= form.cleaned_data['localidad']
+				telefono			= form.cleaned_data['telefono']
+				e = empresa()
+				e.razon_social		= razon_social
+				e.nombre_fantasia	= nombre_fantasia
+				e.domicilio			= domicilio
+				e.cuit 				= cuit
+				e.localidad			= localidad
+				e.telefono			= telefono
+				e.save()
+				info = "La Empresa se Modifico Correctamente"
+			else:
+				info = "Informacion con datos incorrectos"
+			form = addEmpresaForm()
+			ctx  = {'form':form, 'informacion':info}	
+			return render_to_response('ventas/addEmpresa.html',ctx,context_instance=RequestContext(request))
+		else:
+			form = addEmpresaForm()
+			ctx  = {'form':form}
+			return render_to_response('ventas/addEmpresa.html',ctx,context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')
 

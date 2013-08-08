@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Productos {% endblock %}
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+	<a href="{% url "vista_agregar_empresa" %}">Modificar Empresa</a>
+{% endif %}
+{% if empresa %}
+	{% for emp in empresa %}
+		<p><a href="/empresa/{{p.id}}/">{{ emp.razon_social }}</a></p>
+	{% endfor %}
+{% else %}
+	<h3>No Existen Empresa para Mostrar!</h3>
+{% endif %}
+{% endblock %}
