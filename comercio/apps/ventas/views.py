@@ -94,7 +94,7 @@ def add_marca_view(request):
 def add_empresa_view(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
-			form = addEmpresaForm()
+			form = addEmpresaForm(request.POST)
 			info = "Inicializando"
 			if form.is_valid():
 				razon_social		= form.cleaned_data['razon_social']
@@ -103,14 +103,14 @@ def add_empresa_view(request):
 				cuit 				= form.cleaned_data['cuit']
 				localidad			= form.cleaned_data['localidad']
 				telefono			= form.cleaned_data['telefono']
-				e = empresa()
-				e.razon_social		= razon_social
-				e.nombre_fantasia	= nombre_fantasia
-				e.domicilio			= domicilio
-				e.cuit 				= cuit
-				e.localidad			= localidad
-				e.telefono			= telefono
-				e.save()
+				emp = empresa()
+				emp.razon_social		= razon_social
+				emp.nombre_fantasia	= nombre_fantasia
+				emp.domicilio			= domicilio
+				emp.cuit 				= cuit
+				emp.localidad			= localidad
+				emp.telefono			= telefono
+				emp.save()
 				info = "La Empresa se Modifico Correctamente"
 			else:
 				info = "Informacion con datos incorrectos"

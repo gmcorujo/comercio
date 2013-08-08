@@ -15,7 +15,7 @@ def about_view(request):
 	return render_to_response('home/about.html',ctx,context_instance=RequestContext(request))
 
 def empresa_view(request):
-	emp = empresa.objects.filter(all)
+	emp = empresa.objects.all()
 	ctx = {'empresa':emp}
 	return render_to_response('home/empresa.html',ctx,context_instance=RequestContext(request))
 
