@@ -5,5 +5,6 @@ urlpatterns = patterns('comercio.apps.ventas.views',
 	url(r'^add/rubro/$','add_rubro_view',name="vista_agregar_rubro"),
 	url(r'^add/marca/$','add_marca_view',name="vista_agregar_marca"),
 	url(r'^add/proveedor/$','add_proveedor_view',name="vista_agregar_proveedor"),
+	url(r'^add/cliente/$','add_cliente_view',name="vista_agregar_cliente"),
 	url(r'^add/empresa/$','add_empresa_view',name="vista_agregar_empresa"),
 )

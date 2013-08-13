@@ -12,6 +12,19 @@ class addProductForm(forms.Form):
 	def clean(self):
 		return self.cleaned_data
 
+class addClienteForm(forms.Form):
+	razonsocial 		= forms.CharField(widget=forms.TextInput())
+	domicilio			= forms.CharField(widget=forms.TextInput())
+	tipo_documento		= forms.CharField(widget=forms.TextInput())
+	num_documento		= forms.CharField(widget=forms.TextInput())
+	provincia			= forms.CharField(widget=forms.TextInput())
+	localidad			= forms.CharField(widget=forms.TextInput())
+	limite_credito		= forms.CharField(widget=forms.TextInput())
+	plazo				= forms.CharField(widget=forms.TextInput())
+	imagen				= forms.ImageField(required=False)
+
+	def clean(self):
+		return self.cleaned_data
 
 class addRubroForm(forms.Form):
 	nombre			= forms.CharField(widget=forms.TextInput())

@@ -1,9 +1,47 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm, addProveedorForm, addEmpresaForm
-from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto, proveedor, empresa
+from comercio.apps.ventas.forms 	import addProductForm, addRubroForm, addMarcaForm, addProveedorForm, addEmpresaForm, addClienteForm
+from comercio.apps.ventas.models 	import producto, rubroProducto, marcaProducto, proveedor, empresa, cliente
 from django.http 					import HttpResponseRedirect
+
+def add_cliente_view(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			form = addClienteForm(request.POST, request.FILES)
+			info = "Inicializando"
+			if form.is_valid():
+				razonsocial 		= form.cleaned_data['razonsocial']
+				domicilio			= form.cleaned_data['domicilio']
+				tipo_documento		= form.cleaned_data['tipo_documento']
+				num_documento		= form.cleaned_data['num_documento']
+				provincia			= form.cleaned_data['provincia']
+				localidad			= form.cleaned_data['localidad']
+				limite_credito		= form.cleaned_data['limite_credito']
+				plazo				= form.cleaned_data['plazo']
+				imagen				= form.cleaned_data['imagen'] # Esto se obtiene con el request.FILES
+				c = cliente()
+				if imagen:
+					c.imagen = imagen
+				c.razonsocial 		= razonsocial
+				c.domicilio			= domicilio
+				c.tipo_documento	= tipo_documento
+				c.num_documento		= num_documento
+				c.provincia			= provincia
+				c.localidad			= localidad
+				c.limite_credito	= limite_credito
+				c.plazo				= plazo
+			else:
+				info = "El Cliente se Guardo Correctamente"
+			form = addClienteForm()
+			ctx  = {'form':form, 'informacion':info}
+			return render_to_response('ventas/addCliente.html',ctx,context_instance=RequestContext(request))
+		else:
+			form = addClienteForm()
+			ctx  = {'form':form}
+			return render_to_response('ventas/addCliente.html',ctx, context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
 
 def add_product_view(request):
 	if request.user.is_authenticated():

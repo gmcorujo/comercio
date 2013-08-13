@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Lista de Clientes {% endblock %}
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+	<a href="{% url "vista_agregar_cliente" %}">Nuevo Cliente</a>
+{% endif %}
+{% if cliente %}
+	{% for cli in cliente %}
+		<p><a href="/clientes/{{cli.id}}/">{{ cli.razonsocial }}</a></p>
+	{% endfor %}
+{% else %}
+	<h3>No Existen Clientes para Mostrar!</h3>
+{% endif %}
+{% endblock %}

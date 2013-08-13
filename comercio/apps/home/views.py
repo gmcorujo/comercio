@@ -1,11 +1,12 @@
 # Create your views here.
 from django.shortcuts 				import render_to_response
 from django.template 				import RequestContext
-from comercio.apps.ventas.models 	import producto,proveedor,empresa
+from comercio.apps.ventas.models 	import producto,proveedor,empresa,cliente
 from comercio.apps.home.forms 		import ContactForm,LoginForm
 
 from django.contrib.auth 			import login,logout,authenticate
 from django.http					import HttpResponseRedirect
+
 def index_view(request):
 	return render_to_response('home/index.html', context_instance=RequestContext(request))
 
@@ -13,6 +14,11 @@ def about_view(request):
 	mensaje = "Esto es un mensaje desde mi vista!!"
 	ctx 	= {'msg':mensaje}
 	return render_to_response('home/about.html',ctx,context_instance=RequestContext(request))
+
+def cliente_view(request):
+	client  = cliente.objects.filter(status=True)
+	ctx 	= {'cliente':client}
+	return render_to_response('home/clientes.html',ctx,context_instance=RequestContext(request))
 
 def empresa_view(request):
 	emp = empresa.objects.all()
