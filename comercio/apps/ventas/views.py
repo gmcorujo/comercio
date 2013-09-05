@@ -29,10 +29,14 @@ def add_cliente_view(request):
 				c.num_documento		= num_documento
 				c.provincia			= provincia
 				c.localidad			= localidad
+				c.cuenta_corrinte	= False
+				c.status			= True
 				c.limite_credito	= limite_credito
 				c.plazo				= plazo
-			else:
+				c.save()
 				info = "El Cliente se Guardo Correctamente"
+			else:
+				info = "El Cliente No se Guardo Correctamente"
 			form = addClienteForm()
 			ctx  = {'form':form, 'informacion':info}
 			return render_to_response('ventas/addCliente.html',ctx,context_instance=RequestContext(request))

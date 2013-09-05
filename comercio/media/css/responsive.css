@@ -1,0 +1,53 @@
+@media screen and (min-width: 768px)
+{
+	body
+	{
+		margin: 0 auto;
+		max-width: 1380px;
+	}
+
+	footer
+	{
+		display: block;
+	}
+
+	#bienvenida
+	{
+		display: block;
+		border-bottom: 1px solid #CCC;
+		float: right;
+		margin-right: 0.5%;
+		width: 25%;
+	}
+
+	#bienvenida #registro
+	{
+		text-align: center;
+		text-decoration: none;
+	}
+
+	#bienvenida #btn-sociales
+	{
+		text-align: center;
+	}
+
+	#bienvenida #registro
+	{
+		background: #22BCE0;
+		border-radius: 5px;
+		color: white;
+		display: block;
+		font-size: 1.2em;
+		padding: 0.5em 0;
+	}
+
+	#contenido
+	{
+		width: 75%;
+	}
+	
+	heder #titulo-heder
+	{
+		font-size: 10px;
+	}
+}

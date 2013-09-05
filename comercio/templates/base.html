@@ -9,6 +9,7 @@
 	<title>{% block title %}Bienvenidos a la Plataforma de Comercio{% endblock %}</title>
 	<link rel="stylesheet" href="/media/css/normalize.css" />
 	<link rel="stylesheet" href="/media/css/estilos.css"/>
+	<link rel="stylesheet" href="/media/css/responsive.css"/>
 </head>
 <body>
 	<header>
@@ -18,20 +19,21 @@
 		<h1 id="titulo_heder">Plataforma de Comercio y venta de Productos</h1>		
 		<figure id="name_user"> 
 		{% if user.is_authenticated %}
-				<p>Bienvenido: {{ user.username }}</p>
-				<a href="{% url "vista_logout"%}">Logout</a>
-				<figure id="avatar">
-					{% if user.get_profile.photo %}
-						<img src="/media/{{ user.get_profile.photo }}" width="100px" heigth="100px">
-					{% endif %}
-				</figure>
+			<p>{{ user.username }}</p>
+			<a href="{% url "vista_logout"%}">Logout</a>
+			<figure id="avatar">
+				{% if user.get_profile.photo %}
+					<img src="/media/{{ user.get_profile.photo }}" width="100px" heigth="100px">
+				{% endif %}
+			</figure>
 		{% else %}
 			<a href="{% url "vista_login"%}">Login</a>
 		{% endif %}
 		</figure>
+	</header>
 		<nav>
 			<ul>
-				<li><a href="{% url "vista_principal" %}">Inicio</a></li>
+				<li id="flecha-home"><a href="{% url "vista_principal" %}">#</a></li>
 				<li><a href="{% url "vista_cliente" %}">Clientes</a></li>
 				<li><a href="{% url "vista_productos" %}">Productos</a></li>
 				<li><a href="#">Ventas</a></li>
@@ -42,14 +44,24 @@
 				<li><a href="{% url "vista_about" %}">Acerca de...</a></li>	
 			</ul>
 		</nav>
-	</header>
-	<section>
+		<aside id="bienvenida">
+			<div id="registro-user">
+				<h3>Registrate para poder Trabajar en la Plataforma</h3>
+				<a id="registro" href="#">Registrate acá</a>
+			</div>
+			<div id="btn-sociales">
+				<h3>Seguinos en las Redes Sociales!!</h3>
+				<img src="/media/images/facebook.jpg" width="48" heigth="48">
+				<img src="/media/images/twitter.jpg" width="48" heigth="48">
+			</div>
+		</aside>
+	<section id="contenido">
 		{% block content %}
 
 		{% endblock %}
 	</section>	
 	<footer>
-		<p>Powered Plataforma de Comercio y Venta</p>
+		<p>Plataforma de Comercio y Venta</p>
 		<p>Desarrollado por Corujo Gustavo Martín - Siri Ricardo. &copy; Derechos Reservados</p>
 	</footer>
 </body>
