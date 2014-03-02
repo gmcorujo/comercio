@@ -3,23 +3,23 @@ from django.db import models
 
 class cliente(models.Model):
 	def url(self,filename):
-		ruta = "MiltimediaData/Cliente/%s/%s"%(self.nombre,str(filename))
+		ruta = "MultimediaData/Cliente/%s/%s"%(self.razon_social,str(filename))
 		return ruta
 
-	razonsocial			= models.CharField(max_length=60)
+	razon_social		= models.CharField(max_length=60)
 	domicilio			= models.CharField(max_length=50)
 	status				= models.BooleanField(default=True)
 	tipo_documento		= models.CharField(max_length=30)
-	num_documento		= models.BigIntegerField()
+	num_documento		= models.IntegerField(max_length=20)
 	provincia			= models.CharField(max_length=50)
 	localidad			= models.CharField(max_length=50)
 	cuenta_corrinte		= models.BooleanField(default=False)
-	limite_credito		= models.DecimalField(max_digits=6,decimal_places=2)
-	plazo				= models.DateField()
+	limite_credito		= models.DecimalField(max_digits=8,decimal_places=2)
+	plazo				= models.IntegerField(max_length=20)
 	imagen				= models.ImageField(upload_to=url,null=True,blank=True)
 	
 	def __unicode__(self):
-		return self.razonsocial
+		return self.razon_social
 
 class empresa(models.Model):
 	razon_social	= models.CharField(max_length=50)
@@ -33,6 +33,10 @@ class empresa(models.Model):
 		return self.razon_social
 
 class proveedor(models.Model):
+	def url(self,filename):
+		ruta = "MultimediaData/Proveedor/%s/%s"%(self.razon_social,str(filename))
+		return ruta
+
 	razon_social		= models.CharField(max_length=60)
 	nombre_fantasia		= models.CharField(max_length=60)
 	domicilio			= models.CharField(max_length=100)
@@ -41,6 +45,7 @@ class proveedor(models.Model):
 	provincia			= models.CharField(max_length=50)
 	localidad			= models.CharField(max_length=50)
 	telefono			= models.CharField(max_length=30)
+	imagen				= models.ImageField(upload_to=url,null=True,blank=True)
 
 	def __unicode__(self):
 		return self.razon_social
@@ -61,7 +66,7 @@ class marcaProducto(models.Model):
 
 class producto(models.Model):
 	def url(self,filename):
-		ruta = "MiltimediaData/Producto/%s/%s"%(self.nombre,str(filename))
+		ruta = "MultimediaData/Producto/%s/%s"%(self.nombre,str(filename))
 		return ruta
 
 	nombre			= models.CharField(max_length=50)

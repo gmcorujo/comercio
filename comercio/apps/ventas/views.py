@@ -11,7 +11,7 @@ def add_cliente_view(request):
 			form = addClienteForm(request.POST, request.FILES)
 			info = "Inicializando"
 			if form.is_valid():
-				razonsocial 		= form.cleaned_data['razonsocial']
+				razon_social 		= form.cleaned_data['razon_social']
 				domicilio			= form.cleaned_data['domicilio']
 				tipo_documento		= form.cleaned_data['tipo_documento']
 				num_documento		= form.cleaned_data['num_documento']
@@ -23,16 +23,16 @@ def add_cliente_view(request):
 				c = cliente()
 				if imagen:
 					c.imagen = imagen
-				c.razonsocial 		= razonsocial
+				c.razon_social 		= razon_social
 				c.domicilio			= domicilio
 				c.tipo_documento	= tipo_documento
 				c.num_documento		= num_documento
 				c.provincia			= provincia
 				c.localidad			= localidad
-				c.cuenta_corrinte	= False
-				c.status			= True
 				c.limite_credito	= limite_credito
 				c.plazo				= plazo
+				c.cuenta_corrinte	= False
+				c.status			= True
 				c.save()
 				info = "El Cliente se Guardo Correctamente"
 			else:
@@ -169,7 +169,7 @@ def add_empresa_view(request):
 def add_proveedor_view(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
-			form = addProveedorForm(request.POST)
+			form = addProveedorForm(request.POST, request.FILES)
 			info = "Inicializando"
 			if form.is_valid():
 				razon_social		= form.cleaned_data['razon_social']
@@ -179,7 +179,10 @@ def add_proveedor_view(request):
 				provincia			= form.cleaned_data['provincia']
 				localidad			= form.cleaned_data['localidad']
 				telefono			= form.cleaned_data['telefono']
+				imagen				= form.cleaned_data['imagen'] # Esto se obtiene con el request.FILES
 				prov =proveedor()
+				if imagen: # Genero una validacion
+					prov.imagen = imagen
 				prov.razon_social	= razon_social
 				prov.nombre_fantasia= nombre_fantasia
 				prov.domicilio		= domicilio

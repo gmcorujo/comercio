@@ -20,16 +20,17 @@ footer
 	color: #A7A7A7;
 	bottom: 0;
 	display: none;
-	height: 40px;
+	height: 30px;
 	left: 0;
 	padding: 0.5em 0;
-	position: absolute;
+	position: fixed; 
 	text-align: center;
 	width: 100%;
 }
 footer p
 {
 	margin: 0;
+	font-size: 12px;
 }
 
 header
@@ -46,11 +47,13 @@ header:after
 	content: "";
 	display: block;
 }
+
 header figure
 {
 	float: left;
 	text-align: bottom;
 }
+
 header #name_user
 {
 	float: right;
@@ -76,13 +79,15 @@ header #avatar
 }
 header #avatar img
 {
+	/*border-radius: 50%;
+	width: 35px;*/
 	border-radius: 5px;
 	float: right;
-	width: 50px;
+	width: 45px;
 }
 header #logo img
 {
-	width: 80px;
+	width: 90px;
 }
 
 nav
@@ -99,7 +104,7 @@ nav ul
 nav ul li
 {
 	display: inline-block;
-	margin: 0 1.2em 0 0;
+	margin: 0 0.5em 0 0;
 	text-decoration: none;
 	vertical-align: top;
 }
@@ -107,13 +112,35 @@ nav ul li a
 {
 	color: white;
 	display: block;
-	padding: 1em 1em;
+	padding: 0.75em 0.75em;
 	text-decoration: none;
 }
 
 #bienvenida
 {
 	display: none;
+}
+
+#btn-add
+{
+	background: #22BCE0;
+	border-radius: 5px;
+	color: white;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0.5em 0;
+	text-decoration: none;
+}
+
+#btn-back
+{
+	background: #12CCE0;
+	border-radius: 5px;
+	color: white;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0.5em 0;
+	text-decoration: none;
 }
 
 #contenido

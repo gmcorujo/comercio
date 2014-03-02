@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 
 	<meta name="viewport" 
 		  content="width=device-width, initial-scale=1, maximum-scale=1" />
 	
-	<title>{% block title %}Bienvenidos a la Plataforma de Comercio{% endblock %}</title>
+	<title>{% block title %}Bienvenido a la Plataforma de Venta{% endblock %}</title>
 	<link rel="stylesheet" href="/media/css/normalize.css" />
 	<link rel="stylesheet" href="/media/css/estilos.css"/>
 	<link rel="stylesheet" href="/media/css/responsive.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
 	<header>
 		<figure id="logo">
 			<img src="/media/images/logo.png"/>
 		</figure>
-		<h1 id="titulo_heder">Plataforma de Comercio y venta de Productos</h1>		
+		<h1 id="titulo_header">Plataforma de venta</h1>	
+		
 		<figure id="name_user"> 
 		{% if user.is_authenticated %}
 			<p>{{ user.username }}</p>
@@ -44,6 +46,7 @@
 				<li><a href="{% url "vista_about" %}">Acerca de...</a></li>	
 			</ul>
 		</nav>
+		<!--
 		<aside id="bienvenida">
 			<div id="registro-user">
 				<h3>Registrate para poder Trabajar en la Plataforma</h3>
@@ -55,6 +58,7 @@
 				<img src="/media/images/twitter.jpg" width="48" heigth="48">
 			</div>
 		</aside>
+		-->
 	<section id="contenido">
 		{% block content %}
 

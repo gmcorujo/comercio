@@ -3,7 +3,10 @@
 
 {% block content %}
 	<h2>{{ producto.nombre }}</h2>
+	<img src="/media/{{ producto.imagen }}" width="150px" heigth="150px" />
 	<p>{{ producto.descripcion }}</p>
 <br>
-<a href="/productos/">Regresar</a>
+<a id="btn-back" href="/productos/">Regresar</a>
+<a id="btn-back" href="#">Comprar</a>
+
 {% endblock %}

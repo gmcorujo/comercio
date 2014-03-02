@@ -3,13 +3,17 @@
 {% block content %}
 <br>
 {% if user.is_authenticated %}
-	<a href="{% url "vista_agregar_producto" %}">Nuevo Producto</a>
-	<a href="{% url "vista_agregar_rubro" %}">Agregar Rubro</a>
-	<a href="{% url "vista_agregar_marca" %}">Agregar Marca</a>
+	<div id="btn">
+		<a id="btn-add" href="{% url "vista_agregar_producto" %}">Nuevo Producto</a>
+		<a id="btn-add" href="{% url "vista_agregar_rubro" %}">Nuevo Rubro</a>
+		<a id="btn-add" href="{% url "vista_agregar_marca" %}">Nueva Marca</a>
+	</div>
 {% endif %}
 {% if productos %}
 	{% for p in productos %}
-		<p><a href="/producto/{{p.id}}/">{{ p.nombre }}</a></p>
+		<div id="listas-grid">
+			<p><a href="/producto/{{p.id}}/">{{ p.nombre }}</a></p>
+		</div>
 	{% endfor %}
 {% else %}
 	<h3>No Existen Productos para la Venta</h3>

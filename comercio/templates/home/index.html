@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Inicio - Bienvenidos {% endblock %}
+{% block title %}Plataforma de Ventas: Bienvenidos {% endblock %}
 {% block content %}
 	{% if user.is_authenticated %}
 		<p>Usuario: {{ user.username }}</p>
 		{% if user.get_profile.photo %}
 			<img src="/media/{{ user.get_profile.photo }}" width="150px" heigth="150px">
+		{% endif %}
+		{% if productos %}
+			{% for p in productos %}
+				<img scr="/media/MiltimediaData/Producto/{{p.nombre}}/{{ p.imagen }}" width="150px" heigth="150px">
+				<p><a href="/producto/{{p.id}}/">{{ p.nombre }}</a></p>
+			{% endfor %}
 		{% endif %}
 	{% endif %}
 {% endblock %}
